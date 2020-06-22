@@ -13,13 +13,41 @@
 
 <script>
 import Files from "./components/Files.vue";
+import axios from 'axios'
 
 export default {
   name: "app",
+  // data() {
+  //   return {
+  //     files: []
+  //   };
+  // },
   beforeCreate() {
- alert('beforCreate hook has been called');
- console.log('beforCreate hook has been called');
+    let cookieEndpoint = `/`
+    axios
+      .get('/')
+      .then(response => {
+        console.log("Success!");
+        console.log(response);
+      })
+      .catch(error => {
+        console.log( error );
+      });
  },
+  // mounted() {
+  //   let fetchFilesEndpoint = `/fetchfiles`
+
+  //   axios
+  //     .get(fetchFilesEndpoint)
+  //     .then(response => {
+  //       console.log("mounted!");
+  //       this.files = response.data;
+  //       console.log('res ', response.data[0]);
+  //     })
+  //     .catch(error => {
+  //        console.log("mounting error" error );
+  //     });
+  // },
   components: {
     Files
   }

@@ -1,29 +1,30 @@
 <template>
   <b-container>
     <b-row>
-      <v-file-input accept="image/*" label="File input" v-model="uploadedFile"></v-file-input>
+      <v-file-input accept="csv/*" label="File input" v-model="uploadedFile"></v-file-input>
       <v-btn @click="uploadFile()">upload</v-btn>
     </b-row>
 
-    <!-- 
-        <ul>
-          <transition-group
-            name="list"
-            enter-active-class="animated bounceInUp"
-            leave-active-class="animated bounceOutDown"
-          >
-            <li v-for="(data, index) in files" :key="index">
-              {{ data.name }}
-              <i class="fa fa-minus-circle" v-on:click="remove(index)"></i>
-            </li>
-          </transition-group>
-    </ul>-->
+    <b-row>
+      <v-expansion-panels>
+        <v-expansion-panel v-for="(file,index) in files" :key="index">
+          <v-expansion-panel-header>
+            {{file.Name}}
+            <v-col cols="12" sm="3">
+              <v-btn @click="downloadFile($event)" :id="file.Identifier" icon>
+                <v-icon>mdi-heart</v-icon>
+              </v-btn>
+            </v-col>
+          </v-expansion-panel-header>
+          <v-expansion-panel-content></v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
+    </b-row>
   </b-container>
 </template>
 
 <script>
-
-import axios from 'axios'
+import axios from "axios";
 
 export default {
   name: "Files",
@@ -31,33 +32,52 @@ export default {
     return {
       file: "",
       uploadedFile: "",
-      files: [{ name: "Vue.js" }, { name: "Frontend Developer" }]
+      files: []
     };
   },
   methods: {
     uploadFile() {
       if (this.uploadedFile) {
-  
-        let uploadFileEndpoint = `http://${process.env.VUE_APP_ENDPOINT_IP}:${process.env.VUE_APP_ENDPOINT_PORT}`
+        let uploadFileEndpoint = `/upload`;
         let formData = new FormData();
 
-        formData.append(this.uploadedFile, this.uploadedFile.name);
-        console.log(this.uploadedFile);
+        formData.append("file", this.uploadedFile);
+
         axios
-          .post(uploadFileEndpoint, formData)
+          .post(uploadFileEndpoint, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data"
+            }
+          })
           .then(response => {
             console.log("Success!");
-            console.log({ response });
+            console.log(response);
           })
           .catch(error => {
-            console.log({ error });
+            console.log(error);
           });
       } else {
         console.log("there are no files.");
       }
     },
-    download() {},
+    downloadFile(e) {
+      console.log(e.currentTarget.id)
+    },
     preview() {}
+  },
+  mounted() {
+    let fetchFilesEndpoint = `/fetchfiles`;
+
+    axios
+      .get(fetchFilesEndpoint)
+      .then(response => {
+        console.log("mounted!");
+        this.files = response.data;
+        console.log("res ", response.data[0].Name);
+      })
+      .catch(error => {
+        console.log("mounting error", error);
+      });
   }
 };
 </script>
