@@ -16,6 +16,10 @@ import Files from "./components/Files.vue";
 
 export default {
   name: "app",
+  beforeCreate() {
+ alert('beforCreate hook has been called');
+ console.log('beforCreate hook has been called');
+ },
   components: {
     Files
   }
