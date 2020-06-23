@@ -1,6 +1,6 @@
 # upload-frontend
 
-# Dmoe link: 
+# Demo link: 
 
 Please be patient when you upload a big file. It can take up to a minute to upload and calculate the statistics.
 
