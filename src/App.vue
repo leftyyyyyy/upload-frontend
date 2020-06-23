@@ -1,53 +1,19 @@
 <template>
   <div id="app">
-    <!-- <nav>
-      <v-btn small color="primary"> <router-link to="/">Home</router-link> </v-btn>
-    </nav>
-
-    <router-view />-->
-
     <Files />
-
   </div>
 </template>
 
 <script>
 import Files from "./components/Files.vue";
-import axios from 'axios'
+import axios from "axios";
 
 export default {
   name: "app",
-  // data() {
-  //   return {
-  //     files: []
-  //   };
-  // },
   beforeCreate() {
-    let cookieEndpoint = `/`
-    axios
-      .get('/')
-      .then(response => {
-        console.log("Success!");
-        console.log(response);
-      })
-      .catch(error => {
-        console.log( error );
-      });
- },
-  // mounted() {
-  //   let fetchFilesEndpoint = `/fetchfiles`
-
-  //   axios
-  //     .get(fetchFilesEndpoint)
-  //     .then(response => {
-  //       console.log("mounted!");
-  //       this.files = response.data;
-  //       console.log('res ', response.data[0]);
-  //     })
-  //     .catch(error => {
-  //        console.log("mounting error" error );
-  //     });
-  // },
+    const cookieEndpoint = `/`;
+    axios.get(cookieEndpoint);
+  },
   components: {
     Files
   }
