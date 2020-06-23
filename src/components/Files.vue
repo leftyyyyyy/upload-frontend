@@ -11,8 +11,8 @@
           <v-expansion-panel-header>
             {{file.Name}}
             <v-col cols="12" sm="3">
-              <v-btn @click="downloadFile($event)" :id="file.Identifier" icon>
-                <v-icon>mdi-heart</v-icon>
+              <v-btn @click.native.stop="downloadFile($event)" :id="file.Identifier" icon>
+                <v-icon>mdi-file-download</v-icon>
               </v-btn>
             </v-col>
           </v-expansion-panel-header>
@@ -61,7 +61,29 @@ export default {
       }
     },
     downloadFile(e) {
-      console.log(e.currentTarget.id)
+
+      let downloadFileEndpoint = `/download`;
+
+      const params = { file_identifier : e.currentTarget.id};
+
+      axios
+        .get(downloadFileEndpoint, { params })
+        .then(response => {
+          console.log("downloaded!");
+          console.log(response);
+          let fileURL = window.URL.createObjectURL(new Blob([response.data]));
+          let fileLink = document.createElement('a');
+          console.log(fileURL, fileLink);
+          fileLink.href = fileURL;
+          fileLink.setAttribute('download', 'testTEST.csv');
+          document.body.appendChild(fileLink);
+          console.log("before click");
+          fileLink.click();
+        })
+        .catch(error => {
+          console.log("mounting error", error);
+        });
+
     },
     preview() {}
   },
