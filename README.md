@@ -39,7 +39,7 @@ After you clone the repo, follow these simple steps
 - Allow maximum of 100 mb size per file
 - Retrieves and uploads in chunks to improve performance
 - Allow only CSV files
-- Every entity is presented in a UUID form with insurance of generating unique ones everytime
+- Every entity (user, file, stat) is presented in a UUID form with insurance of generating unique ones everytime
 
 # Architecure diagram
 
