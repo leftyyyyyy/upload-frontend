@@ -2,7 +2,7 @@
 
 # Demo link: 
 
-Please be patient when you upload a big file. It can take up to a minute to upload and calculate the statistics.
+Please be patient when you upload a big file. It can take up to a minute to upload and calculate the statistics. (This is the same amount of time it took when I uploaded a big file manually to S3 so its possible network latency with S3 will have an effect)
 
 http://159.89.87.179:8080/#/
 
