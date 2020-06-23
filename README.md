@@ -1,5 +1,10 @@
 # upload-frontend
 
+# Dmoe link: 
+
+Please be patient when you upload a big file. It can take up to a minute to upload and calculate the statistics.
+
+http://159.89.87.179:8080/#/
 
 # Getting Started
 
@@ -42,8 +47,9 @@ After you clone the repo, follow these simple steps
 # User relationships diagram
 
 
-# Things to add:
+# Potential things to add but I ran out of time:
 
+- Encrypt the CSV files in S3
 - SSL cert for secure connection
 - User managment (login)
 - Redis max upload and download variables to control maximum activity to avoid performance issues
