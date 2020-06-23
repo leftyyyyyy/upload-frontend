@@ -73,7 +73,7 @@ export default {
             }
           })
           .then(response => {
-            if (response.data) {
+            if (!Object.keys(response.data).length === 0) {
               this.files.push(response.data);
               this.userMsg = "Successfully uploaded!";
             } else {
