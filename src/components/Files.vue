@@ -118,7 +118,9 @@ export default {
     axios
       .get(fetchFilesEndpoint)
       .then(response => {
-        this.files = response.data;
+        if (typeof response.data == "object") {
+          this.files = response.data;
+        }
       })
       .catch();
   }
