@@ -43,9 +43,11 @@ After you clone the repo, follow these simple steps
 
 # Architecure diagram
 
+see the image in the repo
 
 # User relationships diagram
 
+see the image in the repo
 
 # Potential things to add but I ran out of time:
 
